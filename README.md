@@ -1,0 +1,2 @@
+# juzzpaCore
+Core Juzzpa Engine
