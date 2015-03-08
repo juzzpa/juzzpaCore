@@ -26,16 +26,21 @@ public class RegistrationConfirmationServlet extends HttpServlet{
 			throws IOException {
 		String key = req.getPathInfo().replace("/", "");
 		if(-2 == Database.getJedis().ttl(key)){
-			resp.getWriter().append("EXPIRED!");
+			resp.getWriter().println("EXPIRED!");
 		}else if(-1 == Database.getJedis().ttl(key)){
-			resp.getWriter().append("ALREADY REGISTERED!");
+			resp.getWriter().println("ALREADY REGISTERED!");
 		}else{
 			String value = Database.getJedis().get(key);
 			System.out.println(value);
 			Database.getJedis().del(key);
 			Database.getJedis().set(key, value);
-			resp.getWriter().append("SUCCESS!");
+			resp.getWriter().println("SUCCESS!");
 		}
+	}
+
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+
 	}
 
 }

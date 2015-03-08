@@ -3,10 +3,14 @@
  */
 package com.juzzpa.utility;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,6 +56,18 @@ public class JsonUtils {
 		Type stringStringMap = new TypeToken<Map<String, String>>(){}.getType();
 		map = gson.fromJson(jsonString, stringStringMap);
 		return map;
+	}
+
+	public static String extractJsonStringFromRequest(HttpServletRequest req)
+			throws IOException {
+		BufferedReader reader = req.getReader();
+		StringBuilder jsonString = new StringBuilder();
+		String line;
+		while(null != (line=reader.readLine())){
+			jsonString.append(line);
+		}
+		ObjectUtils.closeQuietly(reader);
+		return jsonString.toString();
 	}
 
 }

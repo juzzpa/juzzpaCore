@@ -1,6 +1,5 @@
 package com.juzzpa.servlet;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Map;
 
@@ -9,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.HttpStatus;
-
-import redis.clients.jedis.Transaction;
 
 import com.juzzpa.google.UrlShortener;
 import com.juzzpa.pojos.Registration;
@@ -36,18 +33,13 @@ public class RegistrationServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		BufferedReader reader = req.getReader();
-		StringBuilder jsonString = new StringBuilder();
-		String line;
-		while(null != (line=reader.readLine())){
-			jsonString.append(line);
-		}
-		Registration registration = (Registration) JsonUtils.validate(jsonString.toString(), Registration.class);
+		String jsonString = JsonUtils.extractJsonStringFromRequest(req);
+		Registration registration = (Registration) JsonUtils.validate(jsonString, Registration.class);
 		if(null != registration){
-			if(Database.getJedis().hgetAll(registration.getEmailId()).isEmpty()){
+			String key = registration.getEmailId();
+			if(Database.getJedis().hgetAll(key).isEmpty()){
 				Map<String, String> map = JsonUtils.jsonToMap(jsonString.toString());
-				Transaction transaction = Database.getJedis().multi();
-				String result = Database.getJedis().hmset(registration.getEmailId(), map);
+				String result = Database.getJedis().hmset(key, map);
 				if(OK.equals(result)){
 					long set = 0;
 					String randomString = null;
