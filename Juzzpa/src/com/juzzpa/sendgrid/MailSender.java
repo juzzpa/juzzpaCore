@@ -1,6 +1,7 @@
 package com.juzzpa.sendgrid;
 
 import com.juzzpa.pojos.Registration;
+import com.juzzpa.utility.Database;
 import com.sendgrid.SendGrid;
 import com.sendgrid.SendGridException;
 
@@ -10,7 +11,7 @@ public class MailSender {
 	private String html = "<html><head><title></title></head><body>Hi [name],\nThanks for registering your activation link is [link]</body></html>";
 	public boolean sendMail(Registration registration, String link){
 		if(null == sendGrid) {
-			sendGrid = new SendGrid("juzzpa", "juzzpak1cks@ss");
+			sendGrid = new SendGrid("juzzpa", Database.getJedis().get("sendGridKey"));
 		}
 		SendGrid.Email email = new SendGrid.Email();
 		email.addTo(registration.getEmailId());
