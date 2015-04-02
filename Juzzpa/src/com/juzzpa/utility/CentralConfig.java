@@ -5,7 +5,13 @@ import java.util.Properties;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
+/**
+ * @author Bharat
+ *
+ */
+@WebListener
 public class CentralConfig implements ServletContextListener {
 
 	private static Properties properties = new Properties();

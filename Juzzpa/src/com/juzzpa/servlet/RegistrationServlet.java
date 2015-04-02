@@ -3,6 +3,7 @@ package com.juzzpa.servlet;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import com.juzzpa.utility.Database;
 import com.juzzpa.utility.JsonUtils;
 import com.juzzpa.utility.StringUtils;
 
+@WebServlet(name="Register", urlPatterns="/register")
 public class RegistrationServlet extends HttpServlet {
 	/**
 	 * 

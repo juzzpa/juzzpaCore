@@ -5,6 +5,7 @@ package com.juzzpa.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import com.juzzpa.utility.Database;
  * @author Bharat
  *
  */
+@WebServlet(name="Confirm",urlPatterns="/confirm/*")
 public class RegistrationConfirmationServlet extends HttpServlet{
 
 	/**
