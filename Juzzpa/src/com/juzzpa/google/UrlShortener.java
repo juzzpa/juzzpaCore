@@ -16,25 +16,46 @@ public class UrlShortener {
 	/**
 	 * 
 	 */
-	private static final String longUrl = "http://localhost:8888/confirm/";
+	private static final String SHORTEN_URL = "SHORTEN_URL";
+	/**
+	 * 
+	 */
+	private static final String TRUE = "true";
+	/**
+	 * 
+	 */
+	private static final String context = "/confirm/";
 	private static OAuthService authService;
-	private String url = "https://www.googleapis.com/urlshortener/v1/url";
+	private static String url = "https://www.googleapis.com/urlshortener/v1/url";
 
-	public String shortenUrl(String randomString){
-		if(null == authService) {
-			authService = new ServiceBuilder().provider(GoogleApi.class).apiKey(CentralConfig.getProperties()
-					.getProperty("GOOGLE_API_KEY")).apiSecret("anonymous").scope("https://www.googleapis.com/auth/urlshortener").build();
+	public static String shortenUrl(String longUrl) {
+		if (null == authService) {
+			authService = new ServiceBuilder()
+					.provider(GoogleApi.class)
+					.apiKey(CentralConfig.getProperties().getProperty(
+							"anonymous")).apiSecret("anonymous")
+					.scope("https://www.googleapis.com/auth/urlshortener")
+					.build();
 		}
+		authService.getRequestToken().getRawResponse();
 		OAuthRequest oAuthRequest = new OAuthRequest(Verb.POST, url);
 		JsonObject jsonObject = new JsonObject();
-		jsonObject.addProperty("longUrl", longUrl+randomString);
+		jsonObject.addProperty("longUrl", longUrl);
 		oAuthRequest.addHeader("Content-Type", "application/json");
 		oAuthRequest.addPayload(jsonObject.toString());
 		Response response = oAuthRequest.send();
-		JSONObject responseJson = null;
-		if(response.isSuccessful()){
-			responseJson = new JSONObject(response.getBody());
+		if (response.isSuccessful()) {
+			JSONObject responseJson = new JSONObject(response.getBody());
+			return responseJson.getString("id");
 		}
-		return responseJson.getString("id");
+		return null;
+	}
+
+	public static String createUrl(String rootUrl, String randomString) {
+		if (TRUE.equals(CentralConfig.getProperties().get(SHORTEN_URL))) {
+			return shortenUrl(rootUrl.concat(context).concat(randomString));
+		} else {
+			return rootUrl.concat(context).concat(randomString);
+		}
 	}
 }

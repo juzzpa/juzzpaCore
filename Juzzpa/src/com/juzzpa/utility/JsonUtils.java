@@ -12,9 +12,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.juzzpa.annotations.Optional;
 
 /**
  * @author Bharat
@@ -22,38 +26,47 @@ import com.google.gson.reflect.TypeToken;
  */
 public class JsonUtils {
 
+	/**
+	 * 
+	 */
 	private static Gson gson = new GsonBuilder().create();
+	private final static Log LOG = LogFactory.getLog(JsonUtils.class);
 
-	public static Object validate(String json, Class<?> pojoClass){
+	public static Object validate(String json, Class<?> pojoClass) {
 		Object pojo = null;
-		try{
+		try {
 			pojo = gson.fromJson(json, pojoClass);
-			if( checkForNulls(pojo)){
+			if (checkForNulls(pojo)) {
 				return pojo;
-			}else{
+			} else {
 				pojo = null;
 			}
-		}catch(IllegalArgumentException e){
-			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			LOG.error("Error in JSON validation " + e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			LOG.error("Error in JSON validation " + e);
 		}
 		return pojo;
 	}
 
-	private static boolean checkForNulls(Object object) throws IllegalArgumentException, IllegalAccessException{
-		for(Field field : object.getClass().getDeclaredFields()){
+	private static boolean checkForNulls(Object object)
+			throws IllegalArgumentException, IllegalAccessException {
+		Field[] fields = object.getClass().getDeclaredFields();
+		Optional optional = null;
+		for (Field field : fields) {
 			field.setAccessible(true);
-			if(null == field.get(object)) {
+			optional = field.getAnnotation(Optional.class);
+			if (null == optional && null == field.get(object)) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	public static Map<String, String> jsonToMap(String jsonString){
+	public static Map<String, String> jsonToMap(String jsonString) {
 		Map<String, String> map = new HashMap<String, String>();
-		Type stringStringMap = new TypeToken<Map<String, String>>(){}.getType();
+		Type stringStringMap = new TypeToken<Map<String, String>>() {
+		}.getType();
 		map = gson.fromJson(jsonString, stringStringMap);
 		return map;
 	}
@@ -61,13 +74,21 @@ public class JsonUtils {
 	public static String extractJsonStringFromRequest(HttpServletRequest req)
 			throws IOException {
 		BufferedReader reader = req.getReader();
-		StringBuilder jsonString = new StringBuilder();
+		StringBuffer jsonString = new StringBuffer();
 		String line;
-		while(null != (line=reader.readLine())){
+		while (null != (line = reader.readLine())) {
 			jsonString.append(line);
 		}
 		ObjectUtils.closeQuietly(reader);
 		return jsonString.toString();
+	}
+
+	public static String toJson(Object object) {
+		return gson.toJson(object);
+	}
+
+	public static Object fromJson(String jsonString, Class<?> clazz) {
+		return gson.fromJson(jsonString, clazz);
 	}
 
 }

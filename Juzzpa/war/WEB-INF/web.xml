@@ -21,12 +21,44 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/confirm/*</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>BusinessDetails</servlet-name>
-		<servlet-class>com.juzzpa.servlet.BusinessDetailsServlet</servlet-class>
+		<servlet-name>BusinessDetailsPre</servlet-name>
+		<servlet-class>com.juzzpa.servlet.BusinessDetailsPreServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>BusinessDetails</servlet-name>
-		<url-pattern>/businessDetails</url-pattern>
+		<servlet-name>BusinessDetailsPre</servlet-name>
+		<url-pattern>/businessDetailsPre</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.juzzpa.servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddServices</servlet-name>
+		<servlet-class>com.juzzpa.servlet.AddServicesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddServices</servlet-name>
+		<url-pattern>/addServices</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddStaff</servlet-name>
+		<servlet-class>com.juzzpa.servlet.AddStaffServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddStaff</servlet-name>
+		<url-pattern>/addStaff</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddStore</servlet-name>
+		<servlet-class>com.juzzpa.servlet.AddStoreServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddStore</servlet-name>
+		<url-pattern>/addStore</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
