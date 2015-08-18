@@ -1,0 +1,71 @@
+<!doctype html>
+<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Add staffs</title>
+   		<link href="assets/css/bootstrap.css" rel="stylesheet">
+   		<link href="assets/css/juzzpa.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body class="backgroundLogin">
+	<header class="container-fluid">
+		<div class="font-champagne pull-left font-large padding15"><i id="plus" class="glyphicon glyphicon-plus" style="color:white"></i> &nbsp;&nbsp;Juzzpa</div>
+        <div id="logout" class="font-champagne pull-right padding25">LogOut</div>
+        <a data-toggle="modal" id="home" href="Add services#homeModal" class="font-champagne pull-right padding25"><span style="color:white">Home</span></a>
+    </header>
+    <legend></legend>
+    
+    <section id="add" style="position:absolute;left:0;width:250px;margin:15px;overflow:auto;height:inherit">
+    	<form>
+        	<div>
+	            <p class="font-champagne centered font-medium">Add staff</p>
+            	<input id="staffName" class="juzz-form" type="text" placeholder="Name*"/>
+				<select class="juzz-form">
+                	<option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <input id="mobileNumber" class="juzz-form" type="text" placeholder="Mobile Number*"/>
+                <label class="font-champagne">Staff image</label>
+                <input id="picture" class="juzz-form" type="file" placeholder="Picture"/>
+                <input id="localAddress" class="juzz-form" type="text" placeholder="Local Address"/>
+                <input id="permanentAddress" class="juzz-form" type="text" placeholder="Permanent Address"/>
+                <input id="emailId" class="juzz-form" type="text" placeholder="Email*"/>
+                <select id="idProof" class="juzz-form">
+                	<option value="1">Voter Id</option>
+                    <option value="2">Driving License</option>
+                    <option value="3">Adhaar card</option>
+                </select>
+                <select id="addedServices" class="juzz-form"></select>
+                <label class="font-champagne">Staff photo Id proof </label>
+                <input id="staffPhotoId" class="juzz-form" type="file" placeholder="staff Photo Id*"/>
+                <input id="facebookAcc" class="juzz-form" type="text" placeholder="Facebook Account"/>
+                <button id="addStaff" type="button" class="juzz-button juzz-default"><span id="staffspan" class="font-champagne">Add</span></button>
+                <button type="reset" class="juzz-button juzz-theme1"><span class="font-champagne">Reset</span></button>
+            </div>
+            
+        </form>
+    </section>
+    
+    <section id="main" class="container-fluid margintop40" style="margin-left:300px;">
+    	<div id="row" class="row" align="center"></div>
+    </section>
+    
+    <section aria-hidden="true" aria-smallledby="viewHome" role="dialog" id="homeModal" class="container modal fade">
+    	<div class="modal-dialog" >
+    	<div class="padding15 juzz-theme1 font-champagne centered">My profile</div>
+        <div class="padding15 juzz-theme1 font-champagne centered">Manage services</div>
+        <div class="padding15 juzz-default font-champagne centered">Manage staffs</div>
+        <div class="padding15 juzz-theme1 font-champagne centered">Manage stores</div>
+        <div class="padding15 juzz-theme1 font-champagne centered">Dashboard</div>
+        </div>
+    </section>
+    
+	<script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/juzzjs/messages.js"></script>
+    <script src="assets/juzzjs/manageStaff.js"></script>
+
+</body>
+</html>

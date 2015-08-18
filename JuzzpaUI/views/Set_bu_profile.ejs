@@ -1,0 +1,48 @@
+<!doctype html>
+<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Step1</title>
+   		<link href="assets/css/bootstrap.css" rel="stylesheet">
+   		<link href="assets/css/juzzpa.css" rel="stylesheet">
+        <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	    <link href="assets/css/style.css" rel="stylesheet">
+    	<link href="assets/css/style-responsive.css" rel="stylesheet">  
+</head>
+
+<body class="backgroundLogin">
+	<header class="container-fluid">
+    	<div class="font-champagne pull-left font-large">Juzzpa</div>
+        <div class="font-champagne pull-right padding15">LogOut</div>
+    </header>
+    <legend></legend>
+    
+    <section id="main">
+    	<form novalidate>
+        	<p class="font-champagne font-large paddingLeft15 centered">Create Business Profile</p>
+            <p id="dummy"></p>
+        	<div style="max-width:400px;margin:auto">
+	        	<input id="buName" class="juzz-form" type="text" placeholder="Name*"/>
+				<select id="category" class="juzz-form"></select>
+                <label class="font-champagne">BUSINESS IMAGE </label>
+                <input id="buImg" class="juzz-form" type="file" placeholder="Business Logo"/>
+                <input id="buAddress" class="juzz-form" type="text" placeholder="Address*"/>
+                <input id="buContact" class="juzz-form" type="tel" placeholder="Contact Landline*"/>
+                <input id="mobileNumber" class="juzz-form" type="tel" placeholder="Mobile Number*"/>
+                <input id="emailId" class="juzz-form" type="text" placeholder="Email"/>
+                <input class="juzz-form" type="text" placeholder="Website"/>
+                <input class="juzz-form" type="text" placeholder="Facebook URL"/>
+                <input class="juzz-form" type="text" placeholder="Twitter URL"/>
+                <button id="buDetails" type="button" class="juzz-button juzz-default"><span class="font-champagne">Submit</span></button>
+                <button type="reset" class="juzz-button juzz-theme1"><span class="font-champagne">Reset</span></button><br><br>
+            </div>
+        </form>
+    </section>
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>	
+        <script src="assets/juzzjs/buDetails.js"></script>
+        <script src="assets/juzzjs/messages.js"></script>
+        
+</body>
+</html>

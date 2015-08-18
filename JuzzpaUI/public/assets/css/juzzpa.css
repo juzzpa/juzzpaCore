@@ -1,0 +1,257 @@
+@charset "utf-8";
+/* CSS Document */
+.fontWhite{
+	color:white;
+}
+
+a{
+	text-decoration:none !important;
+	color:black !important;
+}
+
+
+.backgroundLogin{
+  background: url(../img/juzzwall4.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.font-champagne
+{
+	font-family:"Champagne & Limousines";
+	color:white;
+}
+
+.verticalAlign{
+	alignment-adjust:middle;
+}
+
+.margintop80{
+	margin-top:80px;
+}
+
+.margintop40{
+	margin-top:40px;
+}
+
+.marginBottom50{
+	margin-bottom:50px;
+}
+
+.font-large
+{
+	font-size:2em;
+}
+
+.font-medium
+{
+	font-size:1.5em;	
+}
+
+.centered{
+	text-align:center;
+}
+
+.margin10
+{
+	margin:10px;
+}
+
+@font-face{
+	font-family:"Champagne & Limousines";
+	src:url(../font-super/font-champagne-limousiness/Champagne%20&%20Limousines.ttf);
+	font-weight:bold;
+}
+
+.width75{
+	width:75%;
+}
+
+.inline-block{
+	display:inline-block;
+}
+
+.paddingLeft15{
+	padding-left:15px;
+}
+
+.padding15{
+	padding:15px;
+}
+
+.padding25{
+	padding:25px;
+}
+
+.padding8{
+	padding:1%;
+}
+
+.juzz-form{
+  display: block;
+  width: 100%;
+  height: 32px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family:"Champagne & Limousines";
+  line-height: 1.42857143;
+  color:#000 !important;
+  background-color: #fff;
+  background-image: none;
+  border:none;
+  margin-top:15px;
+  margin-bottom:15px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.juzz-form1{
+  display: block;
+  width: 100%;
+  height: 32px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family:"Champagne & Limousines";
+  line-height: 1.42857143;
+  color:#000 !important;
+  background-color: #ccc;
+  background-image: none;
+  border:none;
+  margin-top:15px;
+  margin-bottom:15px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.juzz-button{
+	display: inline-block;
+  padding: 5px 10px;
+  margin-top:15px;
+  margin-bottom:15px;
+  margin-bottom:0px;
+  color:white;
+  width:100%;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+}
+
+.juzz-default{
+	  background-color:#C90;
+}
+
+.juzz-theme1{
+	background-color:#F93;
+}
+
+.juzz-grids{
+	height:150px;
+	width:150px;
+	background-color:white;
+	padding:10px;
+	margin-bottom:20px;
+}
+
+.juzz-grids2{
+	height:180px;
+	padding-top:30px;
+	padding-bottom:20px;
+	padding-left:10px;
+	padding-right:10px;
+	margin-bottom:10px;
+}
+
+.juzz-product{
+	border:5px solid white;
+	background-repeat:no-repeat;
+	background-size:cover;
+	text-align:center;
+	height:inherit;
+	padding:10px;
+}
+
+*::-webkit-input-placeholder {
+    color: black;
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: black;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: black;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: black;
+}
+
+input[type="date"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+.empty
+{
+    float:left;position:absolute; background-color:white;height:60px;width:60px;
+}
+
+.staff{
+	float:left;position:absolute; background-color:lightblue;height:60px;width:60px;
+}
+
+.spanempty{
+	float:left;position:absolute;width:60px;
+}
+
+.booked{
+	float:left;position:absolute;background-color:green;height:60px;width:60px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.timeline{
+	width:60px;
+	display:inline-block;
+}
+
+.appgreen
+{
+	position:absolute;height:60px;background-color:green;border:1px solid #CCC;
+}
+
+.appwhite
+{
+	width:1440px;height:60px;position:relative;background-color:#D8D8D8;margin-left:80px;margin-bottom:10px;
+}
+
+

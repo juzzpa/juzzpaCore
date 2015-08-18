@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Juzzpa login</title>
+   		<link href="/assets/css/bootstrap.css" rel="stylesheet">
+   		<link href="/assets/css/juzzpa.css" rel="stylesheet">
+    </head>
+    <body class="backgroundLogin">
+		<section class="container-fluid margintop80">
+        	<section class="col-md-8 centered">
+                <p class="font-champagne font-large">Welcome to Juzzpa.</p>
+                <p class="font-champagne font-large">Manage the way you want to work</p>
+                <img src="/assets/img/logo.png" class="img-circle margin10"/>
+            </section>
+            <section class="col-sm-3">
+                    <form novalidate>
+                    	<div>
+	                        <p class="font-champagne font-large centered paddingLeft15">Sign in</p>
+	                        <input id="loginId" type="email" class="juzz-form" placeholder="Email" required/>
+  	                        <input id="loginPassword" type="password" class="juzz-form" placeholder="Password" required/>
+                            <a href="#" class="pull-right"><span class="font-champagne">Forgot Password ?</span></a><br>
+                            <button id="login" type="button" class="juzz-button juzz-default"><span class="font-champagne">LogIn</span></button>
+                            <button type="button" onclick="window.location.href ='createAccount'" class="juzz-button juzz-theme1"><span class="font-champagne">Register</span></button><br><br>
+                            <p class="font-champagne centered paddingLeft15">Have a great Day !</p>
+                        </div>
+                    </form>
+            </section>
+        </section>	
+	    <script src="/assets/js/jquery.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>    	
+        <script src="/assets/juzzjs/login.js"></script>
+        <script src="/assets/juzzjs/messages.js"></script>
+    </body>
+</html>
