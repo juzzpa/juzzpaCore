@@ -3,9 +3,8 @@
  */
 
 var express = require('express'), routes = require('./routes'), http = require('http'), path = require('path');
-
 var app = express();
-
+var registration = require('./routes/registration.js');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -23,8 +22,9 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/createAccount', routes.createAccount);
-app.get('/register', routes.register);
+app.get('/createAccount', registration.createAccount);
+app.get('/register', registration.register);
+app.get('/successRegister', registration.successRegister);
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log('Express server listening on port ' + app.get('port'));
