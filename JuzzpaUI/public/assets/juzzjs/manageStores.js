@@ -1,110 +1,153 @@
 //Manage stores
 
-var stores="{'stores':[{'name':'storeA'},{'name':'storeB'},{'name':'storeC'},{'name':'storeD'}]}";
-var addedServices="{'ase':[{'name':'sa'},{'name':'sb'}]}";
-var addedStaff="{'asf':[{'name':'sfa'},{'name':'sfb'}]}";
+var stores="{'stores':[{'id':'1','name':'storeA'},{'id':'2','name':'storeB'},{'id':'3','name':'storeC'},{'id':'4','name':'storeD'}]}";
+var services="{'services':[{'id':'1','name':'serviceA'},{'id':'2','name':'serviceB'},{'id':'3','name':'serviceC'},{'id':'4','name':'serviceD'}]}";
 var regResponse="{'status':'200','userId':'1'}";
-var viewService="{'service':[{'servicename':'serviceA','serviceimg':'assets/img/b1.png','serviceDesc':'enjoy the massage','serviceId':'1'},{'servicename':'serviceB','serviceimg':'assets/img/b1.png','serviceDesc':'enjoy the massage','serviceId':'3'},{'servicename':'serviceC','serviceimg':'assets/img/b1.png','serviceDesc':'enjoy the massage','serviceId':'3'},{'servicename':'serviceD','serviceimg':'assets/img/b1.png','serviceDesc':'enjoy the massage','serviceId':'4'}]}"
+var addedStores="{'store':[{'storename':'storeA','storeimg':'assets/img/user.png','storeDesc':'enjoy the massage','storeId':'1','storeService':[{'id':'1','name':'serviceA'}]},{'storename':'storeB','storeimg':'assets/img/serviceimg.jpg','storeDesc':'enjoy the massage','storeService':[{'id':'3','name':'serviceC'},{'id':'2','name':'serviceB'}],'storeId':'2'}]}";
+var storesObj=eval("("+stores+")");
+var serviceObj=eval("("+services+")");
+var addedStoresObj=eval("("+addedStores+")");
+
+var storeList=[];
+var serviceList=[];
+for(i=0;i<storesObj.stores.length;i++) storeList.push(storesObj.stores);
+for(i=0;i<serviceObj.services.length;i++) {serviceObj.services[i].checked=false;serviceList.push(serviceObj.services)};
 
 $(document).ready(function() {
-	var i;
-	
-	var storeList=eval("("+stores+")");	
-	for(i=0;i<storeList.stores.length;i++){
-		var name=storeList.stores[i].name;
-		$("#addedStores").append("<option value='"+name+"'>"+name+"</option>");
-	}
-	
-	if(storeList.stores.length>1){
-		$("#storespan").text("Add more");
-		$("#next").removeAttr("disabled");
-	}
-	
-	var addedServiceList=eval("("+addedServices+")");	
-	for(i=0;i<addedServiceList.ase.length;i++){
-		var name=addedServiceList.ase[i].name;
-		$("#addedServices").append("<option value='"+name+"'>"+name+"</option>");
-	}
-	
-	var addedStaffList=eval("("+addedStaff+")");	
-	for(i=0;i<addedStaffList.asf.length;i++){
-		var name=addedStaffList.asf[i].name;
-		$("#addedStaff").append("<option value='"+name+"'>"+name+"</option>");
-	}
-	
-	//load the added services initially	
-	var viewServiceList=eval("("+viewService+")");
-	for(i=0;i<viewServiceList.service.length;i++){
-		var serviceImg=viewServiceList.service[i].serviceimg;
-		var serviceName=viewServiceList.service[i].servicename;
-		var serviceDesc=viewServiceList.service[i].serviceDesc;
-		var serviceId=viewServiceList.service[i].serviceId;
-		
-		var newService="<div id='"+serviceId+"' class='col-sm-3 centered' style='border:1px solid white;height:280px;width:200px;margin:5px;'>";
-		newService+="<img id='serviceImg' src='"+serviceImg+"' class='img-circle margin10' width='100' height='100'/><br>";
-		newService+="<div style='overflow:auto;height:120px;'>";
-		newService+="<p id='serviceName' class='font-champagne font-medium centered'>"+serviceName+"</p>";
-		newService+="<p id='serviceDesc' class='font-champagne'>"+serviceDesc+"</p>";
-		newService+="</div>";
-		newService+="<button type='button' style='position:absolute;width:50%;left:0;bottom:0' class='juzz-button juzz-default font-champagne'>Modify</button>";
-		newService+="<button id='delete' type='button' style='position:absolute;width:50%;right:0;bottom:0' class='juzz-button juzz-theme1 font-champagne'>Delete</button>";
-		newService+="</div>";
-				
-		$("#row").append(newService);
-	}
-		
-	$("#initialStore").click(
-		function(){
-			$("#storeSuccess").remove();
-			$("#minStore").remove();
 			
-			var result=eval("("+regResponse+")");
-			if(result.status==200){
-				$("#addedStores").before("<p id='storeSuccess' class='font-champagne centered'>"+storeSuccess+"</p>");
-			}
-		}
-	);
-	
-	$("#addStore").click(
+	//toggle of add form when clicked on plus sign
+	$("#plus").click(
 		function(){
-			$("#storeSuccess").remove();
-			$("#minStore").remove();
-			
-			var result=eval("("+regResponse+")");
-			if(result.status==200){
-				var serviceImg="assets/img/b1.png";
-				var serviceName=$("#masterService").val();
-				
-				var newService="<div data-id='2' class='col-sm-3 centered' style='border:1px solid white;height:280px;width:200px;margin:5px;'>";
-                newService+="<img id='serviceImg' src='"+serviceImg+"' class='img-circle margin10' width='100' height='100'/><br>";
-                newService+="<div style='overflow:auto;height:120px;'>";
-                newService+="<p id='serviceName' class='font-champagne font-medium centered'>"+serviceName+"</p>";
-                newService+="<p id='serviceDesc' class='font-champagne'>Enjoy the servie like nature comes and gives you bloody hell of a massage. and dont forget to click on the subscriber button below;)</p>";
-                newService+="</div>";
-                newService+="<button type='button' style='position:absolute;width:50%;left:0;bottom:0' class='juzz-button juzz-default font-champagne'>Modify</button>";
-                newService+="<button id='delete' type='button' style='position:absolute;width:50%;right:0;bottom:0' class='juzz-button juzz-theme1 font-champagne'>Delete</button>";
-            	newService+="</div>";
-								
-				$("#row").append(newService);
-			}
-		}
-	);
-	
-	$("#next").click(
-		function(){
-			if(storeList.stores.length>=1){
-				window.location.href="Dashboard.html";
+			if($("#add").is(":visible")){
+				$("#add").fadeOut(500);
+				$("#main").css({"margin-left":"0px","transition":"margin-left 2s"});				
 			}else{
-				$("#storeSuccess").remove();
-				$("#minStore").remove();
-				$("#addedStores").before("<p id='minStore' class='font-champagne centered'>"+minStore+"</p>");
+				$("#main").css({"margin-left":"300px","transition":"margin-left 2s"});
+				$("#add").fadeIn(2000);				
 			}
 		}
 	);
 	
-	//for performing delete operation
-	$(document).on("click","#delete",function(){
-		$(this).parent().remove();
-	});	
+	$( window ).resize(function(){
+		if($(window).width() < 600){
+			$("#add").css("display","none");
+			$("#main").css("margin-left","0px");
+		}else{
+			$("#add").css("display","block");
+			$("#main").css("margin-left","300px");
+		}
+	});
 	
+});
+
+var app=angular.module("store",[]);
+app.controller("storectrl",function($scope){
+	$scope.store=storesObj.stores;
+	$scope.service=serviceObj.services;
+	$scope.masterStore=storesObj.stores[0];
+	$scope.masterService=serviceObj.services[0];
+	$scope.viewStore=addedStoresObj.store;
+	$scope.deleteStore=function(index){
+		addedStoresObj.store.splice(index,1);
+		$scope.x.splice(index,1);
+	}
+	$scope.addStore=function(sid){
+		var newStore={};
+		var m,id,l;
+		var storeService=[]	;
+		var addedServiceIds=[];
+		var n=0;
+		var sindex;
+		var nocheck=true;
+		var oldstore=false;
+		var oldservice=false;
+		
+		for(m=0;m<addedStoresObj.store.length;m++){
+			if(addedStoresObj.store[m].storeId==sid){oldstore=true;sindex=m;break;}
+		}
+		
+		for(m=0;m<serviceObj.services.length;m++){
+			if(serviceObj.services[m].checked==true){nocheck=false;break;}
+		}		
+		
+		if(nocheck==true){$scope.storeError="Please select atleast one service for your store";return;}
+		
+		alert(oldstore);
+		
+		$scope.storeError="";
+		
+		if(oldstore){
+			for(m=0;m<serviceObj.services.length;m++){		
+				oldservice=false;
+				
+				if(serviceObj.services[m].checked==true){
+					var newService={};
+					id=serviceObj.services[m].id;
+					newService.name=serviceObj.services[m].name;
+					newService.id=serviceObj.services[m].id;
+					
+					for(l=0;l<addedStoresObj.store[sindex].storeService.length;l++){
+						if(addedStoresObj.store[sindex].storeService[l].id==id){
+							oldservice=true;
+							l=0;
+							break;							
+						}
+					}
+					
+					if(!oldservice){
+						addedStoresObj.store[sindex].storeService.push(newService);
+					}					
+				}
+			}
+			m=0
+			
+		}else{
+			for(m=0;m<serviceObj.services.length;m++){			
+				if(serviceObj.services[m].checked==true){
+					var newService={};
+					newService.name=serviceObj.services[m].name;
+					newService.id=serviceObj.services[m].id;
+					storeService.push(newService);
+				}
+			}
+			m=0;			
+			
+			for(n=0;n<storesObj.stores.length;n++){
+				if(storesObj.stores[n].id==sid){sindex=n;break;}
+			}
+			n=0;
+			
+			newStore.storeService=storeService;		
+			newStore.storename=storesObj.stores[sindex].name;
+			newStore.storeDesc="dont enjoy please";
+			newStore.storeimg="assets/img/user.jpg";
+			newStore.storeId=sid;
+	
+			addedStoresObj.store.push(newStore);
+			$scope.x.push(newStore);
+		}
+	}
+	
+	$scope.deleteService=function(sindex,seindex){
+		
+		if(addedStoresObj.store[sindex].storeService.length==1)
+		{
+			addedStoresObj.store[sindex].serviceError="At least one service must be present";
+			addedStoresObj.store[sindex].hideError=true;
+			return;
+		}
+		addedStoresObj.store[sindex].storeService.splice(seindex,1);
+	}
+	
+	$scope.udpateStore=function(sindex){
+		addedStoresObj.store[sindex].serviceError="Store updated";
+		addedStoresObj.store[sindex].hideError=true;
+		return;
+	}
+	
+	$scope.hideAlert=function(sindex){
+		addedStoresObj.store[sindex].serviceError="";
+		addedStoresObj.store[sindex].hideError=false;
+		return;
+	}	
 });

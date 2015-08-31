@@ -4,11 +4,18 @@
 	color:white;
 }
 
+.optionbg{
+	background-color:white;
+}
+
 a{
 	text-decoration:none !important;
 	color:black !important;
 }
 
+p{
+	font-family:"sourcesanspro";
+}
 
 .backgroundLogin{
   background: url(../img/juzzwall4.jpg) no-repeat center center fixed; 
@@ -19,10 +26,10 @@ a{
 }
 
 
-.font-champagne
+.font-sourcesanspro
 {
-	font-family:"Champagne & Limousines";
-	color:white;
+	font-family:"sourcesanspro";
+	letter-spacing:1px;
 }
 
 .verticalAlign{
@@ -31,6 +38,10 @@ a{
 
 .margintop80{
 	margin-top:80px;
+}
+
+.margintop100{
+	margin-top:100px;
 }
 
 .margintop40{
@@ -63,7 +74,11 @@ a{
 @font-face{
 	font-family:"Champagne & Limousines";
 	src:url(../font-super/font-champagne-limousiness/Champagne%20&%20Limousines.ttf);
-	font-weight:bold;
+}
+
+@font-face{
+	font-family:"sourcesanspro";
+	src:url(../font-super/font-sourcesanspro/SourceSansPro-Light.ttf);
 }
 
 .width75{
@@ -96,7 +111,7 @@ a{
   height: 32px;
   padding: 6px 10px;
   font-size: 14px;
-  font-family:"Champagne & Limousines";
+  font-family:"sourcesanspro";
   line-height: 1.42857143;
   color:#000 !important;
   background-color: #fff;
@@ -117,7 +132,7 @@ a{
   height: 32px;
   padding: 6px 10px;
   font-size: 14px;
-  font-family:"Champagne & Limousines";
+  font-family:"sourcesanspro";
   line-height: 1.42857143;
   color:#000 !important;
   background-color: #ccc;
@@ -135,9 +150,7 @@ a{
 .juzz-button{
 	display: inline-block;
   padding: 5px 10px;
-  margin-top:15px;
-  margin-bottom:15px;
-  margin-bottom:0px;
+  margin-top:5px;
   color:white;
   width:100%;
   font-size: 14px;
@@ -155,11 +168,11 @@ a{
 }
 
 .juzz-default{
-	  background-color:#C90;
+	  background-color:#3CF;
 }
 
 .juzz-theme1{
-	background-color:#F93;
+	background-color:#62D2BC;
 }
 
 .juzz-grids{
@@ -225,6 +238,27 @@ input[type="date"]::-webkit-inner-spin-button{
 	float:left;position:absolute;background-color:green;height:60px;width:60px;
 }
 
+
+
+.timeline{
+	width:60px;
+	display:inline-block;
+}
+
+.appgreen
+{
+	position:absolute;height:60px;background-color:skyblue;border-radius:30px;
+}
+
+.appwhite
+{
+	width:1440px;height:60px;
+	background: url(../img/bglong.png) repeat-x;
+	background-size:100% 20px;
+	background-position:0px 20px;
+	position:relative;margin-left:80px;margin-bottom:20px;margin-top:20px;border-radius:30px;
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -239,19 +273,16 @@ input[type="date"]::-webkit-inner-spin-button{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
-.timeline{
-	width:60px;
-	display:inline-block;
+#flipimg {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
 }
 
-.appgreen
-{
-	position:absolute;height:60px;background-color:green;border:1px solid #CCC;
-}
 
-.appwhite
-{
-	width:1440px;height:60px;position:relative;background-color:#D8D8D8;margin-left:80px;margin-bottom:10px;
-}
+
 
 

@@ -1,16 +1,20 @@
 //Appointments
 
-var response="{'staff':[{'id':'s1','name':'Tom','photo':'http://cdn2.gossipcenter.com/sites/default/files/imagecache/story_header/photos/tom-cruise-020514sp.jpg','appointments':[{'aid':'a1s1','date':'18-07-2015','starttime':'9:00','endtime':'9:30','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'},{'aid':'a2s1','date':'18-07-2015','starttime':'10:00','endtime':'11:45','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'}]},{'id':'s2','name':'Maria','photo':'http://thewallmachine.com/files/1363603040.jpg','appointments':[{'aid':'a1s2','date':'18-07-2015','starttime':'9:00','endtime':'9:30','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'},{'aid':'a2s2','date':'18-07-2015','starttime':'11:00','endtime':'11:45','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'}]},{'id':'s3','name':'James','photo':'http://georgesjournal.files.wordpress.com/2012/02/007_at_50_ge_pierece_brosnan.jpg','appointments':[{'aid':'a1s3','date':'18-07-2015','starttime':'9:00','endtime':'9:30','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'},{'aid':'a2s3','date':'18-07-2015','starttime':'10:00','endtime':'11:45','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'},{'aid':'a3s3','date':'18-07-2015','starttime':'12:00','endtime':'13:45','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'}]}]}";
-
+var response="{'staff':[{'id':'s1','name':'Tom','photo':'http://cdn2.gossipcenter.com/sites/default/files/imagecache/story_header/photos/tom-cruise-020514sp.jpg','appointments':[{'aid':'a1s1','date':'18-07-2015','starttime':'9:00','endtime':'9:30','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'},{'aid':'a2s1','date':'18-07-2015','starttime':'10:00','endtime':'11:45','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'}]},{'id':'s2','name':'Maria','photo':'http://thewallmachine.com/files/1363603040.jpg','appointments':[{'aid':'a1s2','date':'18-07-2015','starttime':'9:00','endtime':'9:30','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'},{'aid':'a2s2','date':'18-07-2015','starttime':'11:00','endtime':'11:45','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'}]},{'id':'s3','name':'James','photo':'http://georgesjournal.files.wordpress.com/2012/02/007_at_50_ge_pierece_brosnan.jpg','appointments':[{'aid':'a1s3','date':'18-07-2015','starttime':'9:00','endtime':'9:30','custname':'sanjeev','custMob':'9854685456','custEmail':'sanjeev@gmail.com'},{'aid':'a2s3','date':'18-07-2015','starttime':'10:00','endtime':'11:45','custname':'maria','custMob':'9854685456','custEmail':'sanjeev@gmail.com'},{'aid':'a3s3','date':'18-07-2015','starttime':'12:00','endtime':'13:45','custname':'senorita','custMob':'9854685456','custEmail':'sanjeev@gmail.com'}]}]}";
+var timelineArr=[0,0,0,0,0,0,0,0,60,180,300,420,540,660,780,900,1020,1140,1260,1380,1500]
 var staffObj=eval("("+response+")");
 var hrObj=[];
 var minObj=[];
 var i,j;
 
+window.scrollBy(-screen.width,0);
+
 for(i=0;i<24;i++)hrObj.push(i);
 for(i=0;i<60;i++)minObj.push(i);
 
 for(i=0;i<staffObj.staff.length;i++){
+	
+	staffObj.staff[i].imglIndex=10;
 	for(j=0;j<staffObj.staff[i].appointments.length;j++){
 		var st=staffObj.staff[i].appointments[j].starttime;
 		var et=staffObj.staff[i].appointments[j].endtime;
@@ -22,6 +26,7 @@ for(i=0;i<staffObj.staff.length;i++){
 		staffObj.staff[i].appointments[j].endtimemin=getMin(et);
 	}
 }
+
 
 var date=todayDate();
 
@@ -62,6 +67,43 @@ app.controller("appCtrl",function($scope){
 		}
 	};
 	
+	$scope.viewDetails=function(aid){
+		for(i=0;i<staffObj.staff.length;i++){
+			var sid=staffObj.staff[i].id;
+			for(j=0;j<staffObj.staff[i].appointments.length;j++){
+				var id="sa"+staffObj.staff[i].appointments[j].aid;
+				var apid="sa"+aid;
+				if(id==apid)
+					$scope[apid]=!$scope[aid];
+				else
+					$scope[id]=false;
+			}
+		}
+	};
+	
+	$scope.hideDetails=function(aid){
+		var apid="sa"+aid;
+		$scope[apid]=false;
+	};
+	
+	$scope.scrollRight=function(){
+		for(i=0;i<staffObj.staff.length;i++){
+			staffObj.staff[i].imglIndex=1520;
+			staffObj.staff[i].applIndex=200;
+			window.scrollBy(screen.width, 0);
+		}
+	}
+	$scope.scrollLeft=function(){
+		for(i=0;i<staffObj.staff.length;i++){
+			staffObj.staff[i].imglIndex=10;
+			staffObj.staff[i].applIndex=0;
+			window.scrollBy(-screen.width, 0);
+		}
+	}
+	
+	$scope.apptQue=function(){
+		alert(getCustomDate($scope.apptDate));
+	}
 }
 );
 
@@ -83,6 +125,23 @@ function todayDate(){
 	
 	today = mm+'/'+dd+'/'+yyyy;
 	return today;
+}
+
+function getCustomDate(cdate){
+	var dd = cdate.getDate();
+	var mm = cdate.getMonth()+1; //January is 0!
+	var yyyy = cdate.getFullYear();
+	
+	if(dd<10) {
+		dd='0'+dd
+	} 
+	
+	if(mm<10) {
+		mm='0'+mm
+	} 
+	
+	cdate = mm+'/'+dd+'/'+yyyy;
+	return cdate;
 }
 
 
@@ -170,7 +229,7 @@ app.controller("addForm",function($scope){
 
 app.controller("editForm",function($scope){
 	$scope.modifyAppointment=function(sIndex){
-		var st=$scope.y.starttimehr+":"+$scope.y.startimemin;
+		var st=$scope.y.starttimehr+":"+$scope.y.starttimemin;
 		var et=$scope.y.endtimehr+":"+$scope.y.endtimemin;
 		var aIndex=$scope.$index;
 		
@@ -195,3 +254,6 @@ app.controller("editForm",function($scope){
 		$scope.$parent.y.splice(aIndex,1);	
 	}
 });
+
+
+

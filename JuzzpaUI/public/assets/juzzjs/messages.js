@@ -4,7 +4,7 @@
 //login page
 var invalidCredentials="Username/password incorrect";
 var invalidEmailId="The valid emailId should be of the format 'abc@abc.com'";
-var emailEmpty="Please enter login emailId";
+var emailEmpty="Please enter emailId";
 var passwordEmpty="Please enter login password";
 var emailRegex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
@@ -38,3 +38,5 @@ var storeSuccess="Store added Successfully";
 
 //update profile
 var updateSuccess="Profile updated successfully";
+
+var addressEmpty="Please enter the address";
