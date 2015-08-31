@@ -1,123 +1,40 @@
 // Merchant Registration
 
-var regResponse = "{'status':'200','userId':'1'}";
+var regResponse="{'status':'200','userId':'1'}";
+var res=eval("("+regResponse+")");
 
-$(document)
-		.ready(
-				function() {
-					$("#reg")
-							.click(
-									function() {
-										var regName = $("#regName");
-										var mobileNumber = $("#mobileNumber");
-										var emailId = $("#emailId");
-										var password = $("#password");
-										var confirmPassword = $("#confirmPassword");
+var app=angular.module("reg",[]);
 
-										/* clear error messages */
-										$("#regNameEmpty").remove();
-										$("#invalidRegName").remove();
-										$("#mobileNmuberEmpty").remove();
-										$("#invalidMobileNumber").remove();
-										$("#invalidEmailId").remove();
-										$("#emailEmpty").remove();
-										$("#passwordEmpty").remove();
-										$("#passwordStrength").remove();
-										$("#matchPassword").remove();
+app.controller("regCtrl",function($scope){
+	$scope.registration=function(){
+		$scope.validName=false;
+		$scope.validMobileNumber=false;
+		$scope.validEmail=false;
+		$scope.validPassword=false;
+		$scope.validConfirmPassword=false;
+		
+		if(emptyCheck($scope.mName)){$scope.validName=regNameEmpty;return};
+		
+		if(emptyCheck($scope.mMobile)){$scope.validMobileNumber=mobileNmuberEmpty;return};
+		if(!mobileNumberRegex.test($scope.mMobile)){$scope.validMobileNumber=invalidMobileNumber;return};
+		
+		if(emptyCheck($scope.mEmail)){$scope.validEmail=emailEmpty;return};
+		if(!emailRegex.test($scope.mEmail)){$scope.validEmail=invalidEmailId;return};
+		
+		if(emptyCheck($scope.mPassword)){$scope.validPassword=passwordEmpty;return};
+		if(!passwordRegex.test($scope.mPassword)){$scope.validPassword=passwordStrength;return};		
+		
+		if(emptyCheck($scope.mConfirmPassword)){$scope.validConfirmPassword=passwordEmpty;return};		
+		
+		if($scope.mPassword!=$scope.mConfirmPassword){$scope.validConfirmPassword=matchPassword;return};	
+		
+		if(res.status=="200"){
+			window.location.href = "SuccessfulRegistration.html";
+		}
+	}
+});
 
-										/* Name field check */
-										if (regName.val() == "") {
-											regName
-													.after("<p id='regNameEmpty' class='font-champagne'>"
-															+ regNameEmpty
-															+ "</p>");
-											return;
-										} else if (!nameRegex.test(regName
-												.val())) {
-											regName
-													.after("<p id='invalidRegName' class='font-champagne'>"
-															+ invalidRegName
-															+ "</p>");
-											return;
-										}
-
-										/* mobileNumber check */
-										if (mobileNumber.val() == "") {
-											mobileNumber
-													.after("<p id='mobileNmuberEmpty' class='font-champagne'>"
-															+ mobileNmuberEmpty
-															+ "</p>");
-											return;
-										} else if (!mobileNumberRegex
-												.test(mobileNumber.val())) {
-											mobileNumber
-													.after("<p id='invalidMobileNumber' class='font-champagne'>"
-															+ invalidMobileNumber
-															+ "</p>");
-											return;
-										}
-
-										/* Email id field check */
-										if (emailId.val() == "") {
-											emailId
-													.after("<p id='emailEmpty' class='font-champagne'>"
-															+ emailEmpty
-															+ "</p>");
-											return;
-										} else if (!(emailRegex.test(emailId
-												.val()))) {
-											emailId
-													.after("<p id='invalidEmailId' class='font-champagne'>"
-															+ invalidEmailId
-															+ "</p>");
-											return;
-										}
-
-										/* Password field check */
-										if (password.val() == "") {
-											password
-													.after("<p id='passwordEmpty' class='font-champagne'>"
-															+ passwordEmpty
-															+ "</p>");
-											return;
-										} else if (!passwordRegex
-												.test(password)) {
-											password
-													.after("<p id='passwordStrength' class='font-champagne'>"
-															+ passwordStrength
-															+ "</p>");
-											return;
-										}
-
-										/* confirmPassword field check */
-										if (confirmPassword.val() == "") {
-											confirmPassword
-													.after("<p id='passwordEmpty' class='font-champagne'>"
-															+ passwordEmpty
-															+ "</p>");
-											return;
-										} else if (confirmPassword.val() != password
-												.val()) {
-											confirmPassword
-													.after("<p id='matchPassword' class='font-champagne'>"
-															+ matchPassword
-															+ "</p>");
-											return;
-										}
-
-										/*
-										 * Send registration request and get
-										 * response
-										 */
-										var result = eval("(" + regResponse
-												+ ")");
-										if (result.status == '200') {
-											/*
-											 * Redirecting to business profile
-											 * page after successful login
-											 */
-											$("form#registrationForm").submit();
-										}
-
-									});
-				});
+function emptyCheck(str){
+	if(str=="" || str=="undefined" || str==undefined || str==null || str=="null")return true;
+	else return false;
+}

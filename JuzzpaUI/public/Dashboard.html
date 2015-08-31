@@ -1,0 +1,64 @@
+<!doctype html>
+<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Dashboard</title>
+   		<link href="assets/css/bootstrap.css" rel="stylesheet">
+   		<link href="assets/css/juzzpa.css" rel="stylesheet">
+		<script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>	
+		<!-- <script src="assets/juzzjs/chart-master/Chart.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+</head>
+
+<body class="backgroundLogin">
+	<div style="position:fixed;top:10px;left:10px;">
+		<img width="140" height="50" src="assets/img/icon.png"/>
+	</div>
+	<div style="position:fixed;top:10px;right:10px;padding:25px;z-index:100">
+		<a href="loginPage.html"><div id="logout" class="font-sourcesanspro pull-right" style="border:1px solid black;padding:8px;border-radius:20px;">LogOut</div></a>
+		<a data-toggle="modal" id="home" href="Add stores#homeModal" class="font-sourcesanspro pull-right" style="border:1px solid black;padding:8px;border-radius:20px;margin-right:20px;"><span>Home</span></a>
+	</div>
+	
+	<div class="container">
+	<div class="margintop80 row">
+		<div class="col-sm-4" align="center">
+			<p class="font-sourcesanspro">STORES</p>
+			<canvas id="stores" width="350" height="300" style="">
+			Your browser does not support the HTML5 canvas tag.
+			</canvas>
+		</div>
+		<div class="col-sm-4" align="center">
+			<p class="font-sourcesanspro">APPOINTMENTS</p>
+			<canvas id="appointments" width="350" height="300" style="">
+			Your browser does not support the HTML5 canvas tag.
+			</canvas>
+		</div>
+		<div class="col-sm-4" align="center">
+			<p class="font-sourcesanspro">STAFF</p>
+			<canvas id="staff" width="350" height="300">
+			Your browser does not support the HTML5 canvas tag.
+			</canvas>
+		</div>
+	</div>
+	</div>
+	   
+    <section class="margintop80">
+		<section aria-hidden="true" aria-smallledby="viewHome" role="dialog" id="homeModal" class="container modal fade">
+			<div class="modal-dialog" style="width:30%;" >
+			<a href="My_profile.html"><div class="padding15 optionbg font-sourcesanspro centered">My profile</div></a>
+			<a href="Add_services.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage services</div></a>
+			<a href="Add_staffs.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage staffs</div></a>
+			<a href="Link_staff_store.html"><div class="padding15 optionbg font-sourcesanspro centered">Link staffs</div></a>
+			<a href="Add_stores.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage stores</div></a>
+			<div class="padding15 juzz-default font-sourcesanspro centered">Dashboard</div>
+			</div>
+		</section>
+    </section>
+	
+	<script src="assets/juzzjs/dashboard.js"></script>
+	
+        
+</body>
+</html>

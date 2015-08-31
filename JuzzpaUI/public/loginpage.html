@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Juzzpa login</title>
+   		<link href="assets/css/bootstrap.css" rel="stylesheet">
+   		<link href="assets/css/juzzpa.css" rel="stylesheet">
+        <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="assets/js/jquery.js"></script>
+    	<script src="assets/js/bootstrap.min.js"></script>  	
+        <script src="assets/juzzjs/login.js"></script>
+        <script src="assets/juzzjs/messages.js"></script>
+    </head>
+    <body class="backgroundLogin">
+		<section class="container-fluid margintop80">
+			<div style="position:fixed;top:10px;left:10px;">
+    			<img width="140" height="50" src="assets/img/icon.png"/>
+    		</div>
+    
+            <section ng-app="login" ng-controller="loginCtrl">
+                    <form ng-submit="login()" novalidate>
+                    	<div style="max-width:300px;margin:auto">
+	                        <p class="font-sourcesanspro font-large centered paddingLeft15">Sign in</p>
+	                        <input type="text" class="juzz-form" placeholder="Email" ng-model="mEmail"/>
+                            <span class="font-sourcesanspro" ng-show="validEmail">{{validEmail}}</span>
+  	                        <input type="password" class="juzz-form" placeholder="Password" ng-model="mPassword"/>
+                            <span class="font-sourcesanspro" ng-show="validPassword">{{validPassword}}</span>
+                            <a href="#" class="pull-right"><span class="font-sourcesanspro">Forgot Password ?</span></a><br>
+                            <button id="login" type="submit" class="juzz-button juzz-default"><span class="font-champagne">LogIn</span></button>
+                            <button type="button" onclick="window.location.href ='create_account.html'" class="juzz-button juzz-theme1"><span class="font-champagne">Register</span></button><br><br>
+                            <p class="font-champagne centered paddingLeft15">Have a great Day !</p>
+                        </div>
+                    </form>
+            </section>
+        </section>	
+    </body>
+</html>

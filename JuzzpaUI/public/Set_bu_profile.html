@@ -1,0 +1,62 @@
+<!doctype html>
+<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Step1</title>
+   		<link href="assets/css/bootstrap.css" rel="stylesheet">
+   		<link href="assets/css/juzzpa.css" rel="stylesheet">
+        <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	    <link href="assets/css/style.css" rel="stylesheet">
+    	<link href="assets/css/style-responsive.css" rel="stylesheet">
+		<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>		
+		<script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>	
+        <script src="assets/juzzjs/buDetails.js"></script>
+        <script src="assets/juzzjs/messages.js"></script>
+</head>
+
+<body class="backgroundLogin">
+	<div style="position:fixed;top:10px;left:10px;">
+		<img width="140" height="50" src="assets/img/icon.png"/>
+	</div>
+	<a href="loginpage.html" style="position:fixed;top:20px;right:20px;padding:8px;border:1px solid black;border-radius:10px;" class="font-sourcesanspro"><b>Logout</b></a>
+	
+	   
+    <section ng-app="budetails" ng-controller="buctrl" class="margintop80">
+    	<form novalidate ng-submit="budetails()">
+        	<p class="font-champagne font-large paddingLeft15 centered">Create Business Profile</p>
+        	<div style="max-width:400px;margin:auto">
+				<div>
+					<div style="width:40%;float:left;margin-top:15px;"><label for="buImg"><img id="uploadImg" height="126" width="145" src="assets/img/user.png"/></label></div>
+					<div style="width:60%;float:left;">
+						<input ng-model="buName" class="juzz-form" type="text" placeholder="Name*"/>
+						<p ng-show="validName">{{validName}}</p>
+						<select class="juzz-form" ng-model="bucategory" ng-options="c as c for c in category"></select>
+						<input id="buImg" ng-model="bimg" onchange="upload()" style="display:none" class="juzz-form" type="file"  placeholder="Business Logo"/>
+						<input ng-model="buAddress" class="juzz-form" type="text" placeholder="Address*"/>              
+						<p ng-show="validAddress">{{validAddress}}</p>
+					</div>
+				</div>
+				
+	        	<div style="width:49%;float:left;margin-top:-15px;">
+					<input ng-model="buContact" class="juzz-form" type="tel" placeholder="Contact Landline*"/>
+					<p ng-show="validContact">{{validContact}}</p>
+				</div>
+				<div style="width:49%;float:right;margin-top:-15px;">
+					<input ng-model="mobileNumber" class="juzz-form" type="tel" placeholder="Mobile Number*"/>
+					<p ng-show="validMobileNumber">{{validMobileNumber}}</p>
+				</div>
+				<input ng-model="emailId" class="juzz-form" type="text" placeholder="Email"/>
+				<p ng-show="validEmail">{{validEmail}}</p>
+				<input ng-model="website" class="juzz-form" type="text" placeholder="Website"/>
+				<div style="width:49%;float:left;margin-top:-15px;"><input ng-model="fburl" class="juzz-form" type="text" placeholder="Facebook URL"/></div>
+				<div style="width:49%;float:right;margin-top:-15px;"><input ng-model="twitterurl" class="juzz-form" type="text" placeholder="Twitter URL"/></div>
+				<button type="submit" class="juzz-button juzz-default"><span class="font-champagne">Submit</span></button>
+                <button type="reset" class="juzz-button juzz-theme1"><span class="font-champagne">Reset</span></button><br><br>
+            </div>
+        </form>
+    </section>
+        
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Step1</title>
+   		<link href="assets/css/bootstrap.css" rel="stylesheet">
+   		<link href="assets/css/juzzpa.css" rel="stylesheet">
+        <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	    <link href="assets/css/style.css" rel="stylesheet">
+    	<link href="assets/css/style-responsive.css" rel="stylesheet">
+		<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>		
+		<script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>	
+        <script src="assets/juzzjs/myProfile.js"></script>
+        <script src="assets/juzzjs/messages.js"></script>
+</head>
+
+<body class="backgroundLogin">
+	<div style="position:fixed;top:10px;left:10px;">
+		<img width="140" height="50" src="assets/img/icon.png"/>
+	</div>
+	<div style="position:fixed;top:10px;right:10px;padding:25px;z-index:100">
+		<a href="loginPage.html"><div id="logout" class="font-sourcesanspro pull-right" style="border:1px solid black;padding:8px;border-radius:20px;">LogOut</div></a>
+		<a data-toggle="modal" id="home" href="Add stores#homeModal" class="font-sourcesanspro pull-right" style="border:1px solid black;padding:8px;border-radius:20px;margin-right:20px;"><span>Home</span></a>
+	</div>
+	
+	   
+    <section ng-app="myprofile" ng-controller="myprofilectrl" class="margintop80">
+    	<form novalidate ng-submit="modifyDetails()">
+        	<p class="font-champagne font-large paddingLeft15 centered">Business Profile</p>
+			
+        	<div style="max-width:400px;margin:auto">
+				<p class="font-sourcesanspro centered">{{updateSuccess}}<a href="#" ng-show="hideError" ng-click="hideAlert()" style="float:right;font-size:15px;">&times;</a></p>
+				<div style="{{pevents}}">
+					<div>
+						<div style="width:40%;float:left;margin-top:15px;"><label for="buImg"><img id="uploadImg" height="126" width="145" src="assets/img/user.png"/></label></div>
+						<div style="width:60%;float:left;">
+							<input ng-model="name" class="juzz-form" type="text" placeholder="Name*"/>
+							<p ng-show="validName">{{validName}}</p>
+							<select class="juzz-form" ng-model="bucategory" ng-options="c as c for c in category"></select>
+							<input ng-model="img" onchange="upload()" style="display:none" class="juzz-form" type="file"  placeholder="Business Logo"/>
+							<input ng-model="address" class="juzz-form" type="text" placeholder="Address*"/>              
+							<p ng-show="validAddress">{{validAddress}}</p>
+						</div>
+					</div>
+					
+					<div style="width:49%;float:left;margin-top:-15px;">
+						<input ng-model="contact" class="juzz-form" type="tel" placeholder="Contact Landline*"/>
+						<p ng-show="validContact">{{validContact}}</p>
+					</div>
+					<div style="width:49%;float:right;margin-top:-15px;">
+						<input ng-model="mobileNumber" class="juzz-form" type="tel" placeholder="Mobile Number*"/>
+						<p ng-show="validMobileNumber">{{validMobileNumber}}</p>
+					</div>
+					<input ng-model="emailId" class="juzz-form" type="text" placeholder="Email"/>
+					<p ng-show="validEmail">{{validEmail}}</p>
+					<input ng-model="website" class="juzz-form" type="text" placeholder="Website"/>
+					<div style="width:49%;float:left;margin-top:-15px;"><input ng-model="fburl" class="juzz-form" type="text" placeholder="Facebook URL"/></div>
+					<div style="width:49%;float:right;margin-top:-15px;"><input ng-model="twitterurl" class="juzz-form" type="text" placeholder="Twitter URL"/></div>
+				</div>
+				
+				<button type="button" ng-show="!showupdate" ng-click="showupdate=true;pevents=''" class="juzz-button juzz-default"><span class="font-champagne">Edit</span></button>
+				<button type="submit" ng-show="showupdate"  class="juzz-button juzz-theme1"><span class="font-champagne">Update</span></button>
+            </div>
+        </form>
+		
+		<section aria-hidden="true" aria-smallledby="viewHome" role="dialog" id="homeModal" class="container modal fade">
+			<div class="modal-dialog" style="width:30%;" >
+			<div class="padding15 juzz-default font-sourcesanspro centered">My profile</div>
+			<a href="Add_services.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage services</div></a>
+			<a href="Add_staffs.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage staffs</div></a>
+			<a href="Link_staff_store.html"><div class="padding15 optionbg font-sourcesanspro centered">Link staffs</div></a>
+			<a href="Add_stores.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage stores</div></a>
+			<a href="Dashboard.html"><div class="padding15 optionbg font-sourcesanspro centered">Dashboard</div></a>
+			</div>
+		</section>
+    </section>
+        
+</body>
+</html>

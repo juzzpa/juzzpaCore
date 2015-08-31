@@ -2,45 +2,28 @@
 
 var loginResponse="{'status':'200','userId':'1'}";
 
-$(document).ready(function() {	
-	
-	$("#login").click(
-		function(){
-			var loginId=$("#loginId");
-			var loginPassword=$("#loginPassword");			
-			
-			
-			/* Clear the error messages */
-			$("#invalidCredentials").remove();
-			$("#invalidEmailId").remove();
-			$("#emailEmpty").remove();
-			
-			/* Email id field check*/
-			if(loginId.val()==""){
-				loginId.after("<p id='emailEmpty' class='font-champagne'>"+emailEmpty+"</p>");	
-				return;
-			}else if(!(emailRegex.test(loginId.val()))){		
-				loginId.before("<p id='invalidEmailId' class='centered font-champagne'>"+invalidEmailId+"</p>");
-				return;
-			}
-			
-			/* Password field check */
-			if(loginPassword.val()==""){
-				loginPassword.after("<p id='passwordEmpty' class='font-champagne'>"+passwordEmpty+"</p>");	
-				return;
-			}
+var res=eval("("+loginResponse+")");
+
+
+var app=angular.module("login",[]);
+
+app.controller("loginCtrl",function($scope){
+	$scope.login=function(){
 		
-			/* Send login request and get response */
-			var result=eval ("(" + loginResponse + ")");
-			if(result.status!='200'){
-				loginId.before("<p id='invalidCredentials' class='centered font-champagne'>"+invalidCredentials+"</p>");
-			}else{
-				/* Redirecting to business profile page after successful login */
-				window.location.href = "Set_bu_profile.html";
-			}			
+		$scope.validEmail=false;
+		$scope.validPassword=false;
 		
+		if(emptyCheck($scope.mEmail)){$scope.validEmail=emailEmpty;return};
+		
+		if(emptyCheck($scope.mPassword)){$scope.validPassword=passwordEmpty;return};
+		
+		if(res.status=="200"){
+			window.location.href = "Set_bu_profile.html";
 		}
-	);
+	}
 });
 
-
+function emptyCheck(str){
+	if(str=="" || str=="undefined" || str==undefined || str==null || str=="null")return true;
+	else return false;
+}

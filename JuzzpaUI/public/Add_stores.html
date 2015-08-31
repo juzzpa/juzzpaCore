@@ -1,0 +1,78 @@
+<!doctype html>
+<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Add stores</title>
+   		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+   		<link href="assets/css/juzzpa.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+		<script src="assets/js/jquery.js"></script>
+		<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/juzzjs/messages.js"></script>
+		<script src="assets/juzzjs/manageStores.js"></script>		
+</head>
+
+<body class="backgroundLogin" ng-app="store" ng-controller="storectrl">
+	<header class="container-fluid">
+		<div style="position:fixed;top:10px;left:10px;z-index:100" class="font-sourcesanspro pull-left font-large padding15">
+			<img width="140" height="50" src="assets/img/icon.png"/>
+			<b id="plus" style="border:1px solid black;border-radius:30px;padding-left:11px;padding-right:11px;">+</b>
+		</div>
+		
+		<div style="position:fixed;top:10px;right:10px;padding:25px;z-index:100">
+			<a href="loginPage.html"><div id="logout" class="font-sourcesanspro pull-right" style="border:1px solid black;padding:8px;border-radius:20px;">LogOut</div></a>
+			<a data-toggle="modal" id="home" href="Add stores#homeModal" class="font-sourcesanspro pull-right" style="border:1px solid black;padding:8px;border-radius:20px;margin-right:20px;"><span>Home</span></a>
+		</div>
+    </header>
+    
+    <section id="add" style="position:fixed;left:0;width:250px;margin-left:15px;overflow:auto;height:inherit" class="margintop100">
+    	<form ng-submit="addStore(masterStore.id)">
+        	<div>
+            	<p class="font-sourcesanspro centered font-medium">Add store</p>
+				<p class="font-sourcesanspro centered">{{storeError}}</p>
+				<select ng-model="masterStore" class="juzz-form" ng-options="s.name for s in store"></select>
+				<p class="font-small font-sourcesanspro" align="center" style="padding-bottom:10px;margin-bottom:0px;">Select services for your store</p>
+				<div style="margin-bottom:10px;border:1px solid #d0d0d0;background-color:gainsboro;padding:10px;"><div ng-repeat="s in service" style="display:inline-block;width:100px;"><input ng-model="s.checked" type="checkbox" style="float:left"><span style="float:left" class="font-sourcesanspro">&emsp;{{s.name}}</span></div></div>
+                <button type="submit" class="juzz-button juzz-default"><span class="font-sourcesanspro">Add</span></button>
+            </div>            
+        </form>
+    </section>
+    
+    <section id="main" class="container-fluid margintop100" style="margin-left:300px;">
+    	<div id="row" class="row" align="center">				
+			<div class='col-sm-3' style='border:1px solid #c8c8c8;height:360px;width:290px;margin:5px;padding:0px;' ng-repeat="x in viewStore">
+				
+				<div style="border-bottom:1px solid #d8d8d8">
+					<img id='storeImg' class='img-circle margin10' width='100' height='100' style="float:left;" src="{{x.storeimg}}"/><br>
+					<div style="overflow:auto;height:100px;" align="left">
+						<p id='storeName' class='font-sourcesanspro'>{{x.storename}}</p>
+						<p id='storeDesc' class='font-sourcesanspro'>{{x.storeDesc}}</p>
+					</div>
+				</div>
+				<div style="padding:10px;overflow:auto;height:200px;" class="centered">
+					<p class="font-sourcesanspro centered">{{x.serviceError}}<a href="#" ng-show="x.hideError" ng-click="hideAlert($index)" style="float:right;font-size:15px;">&times;</a></p>
+					<div style="width:96%;height:30px;background-color:PaleVioletRed ;margin:2%;border-radius:20px;color:white;padding-top:4px;padding-left:10px;padding-right:2px;float:left" ng-repeat="y in x.storeService" class="font-sourcesanspro">
+					<span>{{y.name}}</span>
+					<i ng-click="deleteService($parent.$index,$index)" class="glyphicon glyphicon-remove" style="float:right;padding:3px;"></i>
+					</div>
+				</div>
+				<button ng-click="udpateStore($index)" type='button' style="position:absolute;bottom:0;width:50%;left:0" class='juzz-button juzz-default font-sourcesanspro'>Update</button>
+				<button ng-click="deleteStore($index)" type='button' style="position:absolute;bottom:0;width:50%;right:0" class='juzz-button juzz-theme1 font-sourcesanspro'>Delete</button>
+			</div>
+		</div>
+    </section>	
+    
+    <section aria-hidden="true" aria-smallledby="viewHome" role="dialog" id="homeModal" class="container modal fade">
+    	<div class="modal-dialog" style="width:30%;" >
+    	<a href="My_profile.html"><div class="padding15 optionbg font-sourcesanspro centered">My profile</div></a>
+        <a href="Add_stores.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage stores</div></a>
+        <a href="Add_staffs.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage staffs</div></a>
+        <div class="padding15 juzz-default font-sourcesanspro centered">Manage stores</div>
+        <a href="Dashboard.html"><div class="padding15 optionbg font-sourcesanspro centered">Dashboard</div></a>
+        </div>
+    </section>
+	
+</body>
+</html>

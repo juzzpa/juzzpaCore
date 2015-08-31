@@ -1,0 +1,64 @@
+<!doctype html>
+<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="">
+        <title>Add services</title>
+   		<link href="assets/css/bootstrap.css" rel="stylesheet">
+   		<link href="assets/css/juzzpa.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+		<script src="assets/js/jquery.js"></script>
+		<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/juzzjs/messages.js"></script>
+		<script src="assets/juzzjs/manageService.js"></script>		
+</head>
+
+<body class="backgroundLogin" ng-app="service" ng-controller="servicectrl">
+	<header class="container-fluid">
+		<div style="position:fixed;top:10px;left:10px;z-index:100" class="font-sourcesanspro pull-left font-large padding15">
+			<img width="140" height="50" src="assets/img/icon.png"/>
+			<i id="plus" style="border:1px solid black;border-radius:20px;padding-left:5px;padding-right:5px;" class="glyphicon glyphicon-plus"></i>
+		</div>
+		
+		<div style="position:fixed;top:10px;right:10px;padding:25px;z-index:100">
+			<a href="loginPage.html"><div id="logout" class="font-sourcesanspro pull-right" style="border:1px solid black;padding:8px;border-radius:20px;">LogOut</div></a>
+			<a data-toggle="modal" id="home" href="Add services#homeModal" class="font-sourcesanspro pull-right" style="border:1px solid black;padding:8px;border-radius:20px;margin-right:20px;"><span>Home</span></a>
+		</div>
+    </header>
+    
+    <section id="add" style="position:fixed;left:0;width:250px;margin-left:15px;overflow:auto;height:inherit" class="margintop100">
+    	<form ng-submit="addService(masterService.id)">
+        	<div>
+            	<p class="font-sourcesanspro centered font-medium">Add service</p>
+				<select ng-model="masterService" class="juzz-form" ng-options="s.name for s in service"></select>
+                <button type="submit" class="juzz-button juzz-default"><span class="font-sourcesanspro">Add</span></button>
+            </div>            
+        </form>
+    </section>
+    
+    <section id="main" class="container-fluid margintop100" style="margin-left:300px;">
+    	<div id="row" class="row" align="center">				
+			<div class='col-sm-3 centered' style='border:1px solid #c8c8c8;height:300px;width:200px;margin:5px;padding:0px;' ng-repeat="x in viewService">
+				<img id='serviceImg' class='img-circle margin10' width='100' height='100' src="{{x.serviceimg}}"/><br>
+				<p id='serviceName' class='font-sourcesanspro centered'>{{x.servicename}}</p>
+				<div style='overflow:auto;height:120px;padding:10px;background-color:#e0e0e0'>
+					<p id='serviceDesc' class='font-sourcesanspro'>{{x.serviceDesc}}</p>
+				</div>
+				<button ng-click="deleteService($index)" type='button' style="position:absolute;bottom:0;width:inherit;left:0" class='juzz-button juzz-theme1 font-sourcesanspro'>Delete</button>
+			</div>
+		</div>
+    </section>
+    
+    <section aria-hidden="true" aria-smallledby="viewHome" role="dialog" id="homeModal" class="container modal fade">
+    	<div class="modal-dialog" style="width:30%;" >
+    	<a href="My_profile.html"><div class="padding15 optionbg font-sourcesanspro centered">My profile</div></a>
+        <div class="padding15 fontWhite juzz-default font-sourcesanspro centered">Manage services</div>
+        <a href="Add_staffs.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage staffs</div></a>
+        <a href="Add_stores.html"><div class="padding15 optionbg font-sourcesanspro centered">Manage stores</div></a>
+        <a href="Dashboard.html"><div class="padding15 optionbg font-sourcesanspro centered">Dashboard</div></a>
+        </div>
+    </section>
+	
+</body>
+</html>
