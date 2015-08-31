@@ -22,7 +22,6 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/createAccount', routes.createAccount);
 app.get('/register', routes.register);
 app.get('/successRegister', routes.successRegister);
 

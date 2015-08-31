@@ -5,16 +5,12 @@ var options = require('./../constants.js').http_options;
 var http = require('http');
 
 exports.index = function(req, res) {
-	res.sendfile('./public/loginpage.html');
-};
-
-exports.createAccount = function(req, res) {
-	res.sendFile('createAccount.html');
+	res.sendfile('./public/loginPage.html');
 };
 
 exports.register = function(req, res) {
 	var jsonObject = {};
-	console.log(req.body);
+	console.log(req.query.merchantName);
 	jsonObject.name = req.body.regName;
 	jsonObject.emailId = req.body.emailId;
 	jsonObject.mobileNumber = req.body.mobileNumber;
@@ -37,5 +33,5 @@ exports.register = function(req, res) {
 };
 
 exports.successRegister = function(req, res) {
-	res.render('successfulRegistration');
+	res.sendfile('./public/successfulRegistration.html');
 };

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>Registration</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/juzzpa.css" rel="stylesheet">
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/juzzjs/register.js"></script>
+    <script src="assets/juzzjs/messages.js"></script>
+  </head>
+
+  <body class="backgroundLogin">
+    <div style="position:fixed;top:10px;left:10px;">
+    	<img width="140" height="50" src="assets/img/icon.png"/>
+    </div>
+    
+    <section ng-app="reg" ng-controller="regCtrl" class="margintop80 container">
+        	<p class="font-sourcesanspro font-large paddingLeft15 centered">Create Account</p>
+            <form ng-submit="registration()" method="get" action="/register">
+                <div style="max-width:300px;margin:auto">
+                    <input class="juzz-form" type="text" placeholder="Name*" ng-model="mName" name="merchantName"/>
+                    <p ng-show="validName">{{validName}}</p>
+                    <input class="juzz-form" type="text" placeholder="Mobile Number*" ng-model="mMobile"/>
+                    <p ng-show="validMobileNumber">{{validMobileNumber}}</p>
+                    <input class="juzz-form" type="text" placeholder="Email*" ng-model="mEmail"/>
+                    <p ng-show="validEmail">{{validEmail}}</p>
+                    <input class="juzz-form" type="password" placeholder="Password*" ng-model="mPassword"/>
+                    <p ng-show="validPassword">{{validPassword}}</p>
+                    <input class="juzz-form" type="password" placeholder="Confirm Password*" ng-model="mConfirmPassword"/>
+                    <p ng-show="validConfirmPassword">{{validConfirmPassword}}</p>
+                    <button type="submit" class="juzz-button juzz-default"><b class="font-sourcesanspro">Register</b></button>
+                    <button type="reset" class="juzz-button juzz-theme1"><b class="font-sourcesanspro">Reset</b></button><br><br>
+                </div>
+           </form>
+    </section>
+  </body>
+</html>
